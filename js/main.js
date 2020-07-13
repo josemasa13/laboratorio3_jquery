@@ -1,39 +1,22 @@
-let createButton = document.getElementById("todoCreator");
-let cleanButton = document.getElementById("todoCleaner");
-let markButton = document.getElementById("todoMarker");
-let eraseButton = document.getElementById("todoEraser");
-
-createButton.addEventListener('click', createTodo);
-cleanButton.addEventListener('click', cleanTodos);
-markButton.addEventListener('click', markTodos);
-eraseButton.addEventListener('click', eraseTodos);
-
-function createTodo(e){
+$("#todoCreator").on('click', function(e){
     e.preventDefault();
-    // obtener valor de la caja
-    var todoText = document.getElementById("todoText").value;
-    var list = document.getElementById("todoContainer");
+    var todoText = $("#todoText").val();
+    $("#todoContainer").append('<input type = "checkbox" name="todo">' + todoText + '<br>');
+})
 
-    let currentListHTML = list.innerHTML;
-    list.innerHTML = currentListHTML + '<input type = "checkbox" name="todo">' + todoText + '<br>'; 
-
-}
-
-function cleanTodos(e){
+$('#todoMarker').on('click', function(e){
     e.preventDefault();
-    var todos = document.getElementsByName("todo");
-    todos.forEach(todo => todo.checked = false);
-}
+    var todos = $('input[name="todo"]')
+    todos.each(todo => todo.prop('checked', true));
+})
 
-function markTodos(e){
+$('#todoCleaner').on('click', function(e){
     e.preventDefault();
-    var todos = document.getElementsByName("todo");
-    todos.forEach(todo => todo.checked = true);
-}
+    var todos = $('input[name="todo"]')
+    todos.each(todo => todo.prop('checked', false));
+})
 
-function eraseTodos(e){
-    var list = document.getElementById("todoContainer");
-    list.innerHTML = "";
-}
-
-let textField = document.getElementById("todoText");
+$('#todoEraser').on('click', function(e){
+    e.preventDefault();
+    $("#todoContainer").html("");
+})
