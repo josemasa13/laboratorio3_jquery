@@ -6,17 +6,21 @@ $("#todoCreator").on('click', function(e){
 
 $('#todoMarker').on('click', function(e){
     e.preventDefault();
-    var todos = $('input[name="todo"]')
-    todos.each(todo => todo.prop('checked', true));
+    var todos = $('input[name="todo"]');
+    todos.each(function(){
+        $( this ).prop('checked',true);
+    });
 })
 
 $('#todoCleaner').on('click', function(e){
     e.preventDefault();
     var todos = $('input[name="todo"]')
-    todos.each(todo => todo.prop('checked', false));
+    todos.each(function(){
+        $( this ).prop('checked',false);
+    });
 })
 
 $('#todoEraser').on('click', function(e){
     e.preventDefault();
-    $("#todoContainer").html("");
+    $( "#todoContainer" ).html("");
 })
